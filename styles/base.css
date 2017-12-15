@@ -1,0 +1,68 @@
+@import "fonts.css";
+@import "normalize.css";
+
+:root {
+    --main-vinous-colors: #351212;
+}
+
+* {
+    box-sizing: border-box;
+    -webkit-user-drag: none;
+    user-drag: none;
+}
+
+html {
+    min-height: 100%;
+    min-width: 100%;
+    /*background: linear-gradient(to bottom, #7E6509, #E8C44C) no-repeat;*/
+}
+
+body {
+    height: 100%;
+    font-family: "Acme", serif;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    position: absolute;
+    top: 5px;
+    left: 10px;
+}
+
+.menu__item {
+    padding: 10px;
+
+    background: #C1E4FF;
+    color: white;
+    border: 3px solid white;
+    border-radius: 15px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1.5em;
+
+    transition: background 0.3s;
+}
+
+.menu__item:hover {
+    background: #F6D667;
+    color: white;
+    cursor: pointer;
+}
+
+
