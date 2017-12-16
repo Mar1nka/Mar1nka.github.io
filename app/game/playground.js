@@ -201,16 +201,16 @@
         }
 
         getDifficulty () {
-            let difficulty = 0;
+            let difficulty = 1;
 
             if (this.scores >= 20 && this.scores < 40) {
-                difficulty = 1;
-            } else if (this.scores >= 40 && this.scores < 60) {
                 difficulty = 2;
-            } else if (this.scores >= 60 && this.scores < 100) {
+            } else if (this.scores >= 40 && this.scores < 60) {
                 difficulty = 3;
-            } else if (this.scores >= 100) {
+            } else if (this.scores >= 60 && this.scores < 100) {
                 difficulty = 4;
+            } else if (this.scores >= 100) {
+                difficulty = 5;
             }
 
             if (difficulty < this.currentDifficulty) {
@@ -222,21 +222,23 @@
 
         checkGameStage () {
             switch (this.currentDifficulty) {
-            case 1:
+            case 2:
+                this.bee.scale = 1.2;
                 this.initBadFlowers()
                 this.sceneObjects.push(this.badFlowers);
-
                 break;
-            case 2:
+            case 3:
+                this.bee.scale = 1.4;
                 this.initBears();
                 this.sceneObjects.push(this.leftBear);
                 this.sceneObjects.push(this.rightBear);
                 break;
-            case 3:
+            case 4:
+                this.bee.scale = 1.6;
                 this.initBeeEater();
                 this.sceneObjects.push(this.beeEater);
                 break;
-            case 4:
+            case 5:
                 EventObserver.triggerEvent('winning');
                 this.destroy();
                 break;
@@ -247,13 +249,13 @@
 
         render () {
             for (let i = 0; i < this.sceneObjects.length; i++) {
-                this.updateObj(this.sceneObjects[i]);
+                this.updateObject(this.sceneObjects[i]);
             }
 
             this.clearCanvas();
 
             for (let i = 0; i < this.sceneObjects.length; i++) {
-                this.drawObj(this.sceneObjects[i]);
+                this.drawObject(this.sceneObjects[i]);
             }
 
             this.hive.draw();
@@ -265,7 +267,7 @@
             }
         }
 
-        updateObj (obj) {
+        updateObject (obj) {
             switch (obj) {
             case this.goodFlowers:
                 this.updateScores(this.goodFlowers);
@@ -285,7 +287,7 @@
             }
         }
 
-        drawObj (obj) {
+        drawObject (obj) {
             switch (obj) {
             case this.goodFlowers:
                 this.drawFlowers(this.goodFlowers);

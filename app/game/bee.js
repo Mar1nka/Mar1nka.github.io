@@ -14,8 +14,10 @@
             this.canvas = context.canvas;
             this.canvasBoundingRect = this.canvas.getBoundingClientRect();
 
-            this.width = 80;
-            this.height = 80;
+            this._width = 50;
+            this._height = 50;
+
+            this.scale = 1;
 
             this.rightMovingImage = new Image();
             this.rightMovingImage.src = 'images/scene/rightMovingBee.png';
@@ -31,10 +33,14 @@
             this.keyUpHandler = this.keyUpHandler.bind(this);
 
             this.resizeCanvas = this.resizeCanvas.bind(this);
+        }
 
-            // used?
-            // this.rightMovingImage.addEventListener('load', () => {
-            // })
+        get width () {
+            return this._width * this.scale;
+        }
+
+        get height () {
+            return this._height * this.scale;
         }
 
         init () {
@@ -281,7 +287,6 @@
             window.removeEventListener('click', this.clickHandler);
             window.removeEventListener("keydown", this.keyDownHandler, false);
             window.removeEventListener("keyup", this.keyUpHandler, false);
-
             window.removeEventListener('resize', this.resizeCanvas);
         }
 
