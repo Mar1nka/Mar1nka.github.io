@@ -67,7 +67,7 @@
 
             let request = new XMLHttpRequest();
 
-            request.open('GET', 'music/game.mp3', true);
+            request.open('GET', 'music/main.mp3', true);
 
             // Setting the responseType to arraybuffer sets up the audio decoding
             request.responseType = 'arraybuffer';

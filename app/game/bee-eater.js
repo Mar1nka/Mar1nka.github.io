@@ -27,8 +27,8 @@ class BeeEater {
         this.directionX = 1;
         this.directionY = -1;
 
-        this.stepX = 2;
-        this.stepY = -2;
+        this.stepX = 2.5;
+        this.stepY = -2.5;
     }
 
     setPosition (x, y) {
@@ -85,19 +85,29 @@ class BeeEater {
         this.endX = this.x + this.stepX;
         this.endY = this.y + this.stepY;
 
-        this.directionX = this.getDirection(this.endX, this.x);
-        this.directionY = this.getDirection(this.endY, this.y);
+        this.directionX = this.direction.x;
+        this.directionY = this.direction.y;
 
         this.x = this.endX;
         this.y = this.endY;
     }
 
-    getDirection (endPos, pos) {
-        let direction = 1;
+    get direction () {
+        let directionX = 1;
+        let directionY = 1;
 
-        if ((endPos - pos) < 0) {
-            direction = -1;
+        if ((this.endX - this.x) < 0) {
+            directionX = -1;
         }
+
+        if ((this.endY - this.y) < 0) {
+            directionY = -1;
+        }
+
+        let direction = {
+            x: directionX,
+            y: directionY
+        };
 
         return direction;
     }

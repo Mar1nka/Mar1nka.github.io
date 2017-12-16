@@ -18,7 +18,7 @@
             this.imageFrameNumber = 5;
 
             this.frameCounter = 0;
-            this.frameDelay = 4;
+            this.frameDelay = 5;
 
             this.croppedWidth = 140;
             this.croppedHeight = 140;

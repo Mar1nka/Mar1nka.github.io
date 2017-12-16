@@ -56,7 +56,7 @@
             this.frameCounter = 0;
             this.frameDelay = 1;
 
-            this.speedPerFrame = 4;
+            this.speedPerFrame = 4.5;
 
             this.rightKeyPressed = false;
             this.leftKeyPressed = false;
@@ -210,7 +210,7 @@
         move () {
             //Key press handler
             if (this.rightKeyPressed || this.leftKeyPressed || this.upKeyPressed || this.downKeyPressed) {
-                const step = 5;
+                const step = 6;
 
                 let x = this.endX;
                 let y = this.endY;

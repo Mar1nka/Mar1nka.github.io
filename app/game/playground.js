@@ -95,8 +95,6 @@
             EventObserver.removeEventListener('removeFlower', this.removeFlower);
             window.removeEventListener('resize', this.windowResizeHandler);
 
-            //TODO call bee.destroy() method
-
             this.bee.destroy();
 
             this.isGameOver = true;
@@ -171,7 +169,7 @@
 
         initBeeEater () {
             this.beeEater = new BeeEater(this.context);
-            this.beeEater.setPosition(this.canvas.width / 2, this.canvas.height - this.beeEater.height);
+            this.beeEater.setPosition(this.canvas.width - this.beeEater.width, this.canvas.y);
             this.beeEater.draw();
         }
 
@@ -205,13 +203,13 @@
         getDifficulty () {
             let difficulty = 0;
 
-            if (this.scores >= 10 && this.scores < 20) {
+            if (this.scores >= 20 && this.scores < 40) {
                 difficulty = 1;
-            } else if (this.scores >= 20 && this.scores < 30) {
+            } else if (this.scores >= 40 && this.scores < 60) {
                 difficulty = 2;
-            } else if (this.scores >= 30 && this.scores < 50) {
+            } else if (this.scores >= 60 && this.scores < 100) {
                 difficulty = 3;
-            } else if (this.scores >= 50) {
+            } else if (this.scores >= 100) {
                 difficulty = 4;
             }
 
@@ -227,6 +225,7 @@
             case 1:
                 this.initBadFlowers()
                 this.sceneObjects.push(this.badFlowers);
+
                 break;
             case 2:
                 this.initBears();

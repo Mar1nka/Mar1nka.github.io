@@ -104,8 +104,8 @@
     width: 400px;
     height: 220px;
 
-    background: #5e8c03;
-    border: 5px solid #eff30d;
+    background: #4993bb;
+    border: 5px solid #fbfd7c;
     border-radius: 15px;
     color: white;
 }
@@ -141,5 +141,9 @@
 }
 
 .game-message__button:hover{
-    background: #f1df12;
+    background: #1d6c8a;
+}
+
+.game-menu__back-item {
+    background: #63a1c3;
 }

@@ -17,8 +17,8 @@
             this.croppedWidth = 344;
             this.croppedHeight = 388;
 
-            this.originalSpeedPerFrame = 2;
-            this.speedPerFrame = 2;
+            this.originalSpeedPerFrame = 3;
+            this.speedPerFrame = 3;
             this.directionX = 0;
             this.directionY = 0;
             this.endX = 0;
@@ -108,8 +108,8 @@
         }
 
         determineSteps () {
-            this.directionX = this.getDirection(this.endX, this.x);
-            this.directionY = this.getDirection(this.endY, this.y);
+            this.directionX = this.direction.x;
+            this.directionY = this.direction.y;
 
             let speedsObj = this.getSpeedsRerFrame();
 
@@ -117,13 +117,22 @@
             this.stepY = this.directionY * speedsObj.speedPerFrameY;
         }
 
-        //TODO maybe create property [ get direction ()]  without parameters
-        getDirection (endPos, pos) {
-            let direction = 1;
+        get direction () {
+            let directionX = 1;
+            let directionY = 1;
 
-            if ((endPos - pos) < 0) {
-                direction = -1;
+            if ((this.endX - this.x) < 0) {
+                directionX = -1;
             }
+
+            if ((this.endY - this.y) < 0) {
+                directionY = -1;
+            }
+
+            let direction = {
+                x: directionX,
+                y: directionY
+            };
 
             return direction;
         }
@@ -176,7 +185,7 @@
         }
 
         meetBeeHandler () {
-            this.speedPerFrame += 0.5;
+            this.speedPerFrame = 4;
 
             if (!this.isChangeDirectionX && !this.isIntersectionBee) {
                 this.setEndPosition(this.finishPosX, this.finishPosY);
