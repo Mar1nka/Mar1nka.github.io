@@ -1,5 +1,10 @@
 (function () {
 
+    const STATES = {
+        WITHOUT_HONEY: 0,
+        WITH_HONEY: 1
+    }
+
     class Bear {
         constructor (context) {
             this.context = context;
@@ -7,6 +12,8 @@
             this.y = 0;
             this.width = 150;
             this.height = 150;
+
+            this.state = STATES.WITHOUT_HONEY;
 
             this.currentImageIndex = 0;
             this.imageFrameNumber = 10;
@@ -41,8 +48,14 @@
             this.rightMovingImage = new Image();
             this.rightMovingImage.src = 'images/scene/rightMovingBear.png';
 
+            this.rightMovingImageWithHoney = new Image();
+            this.rightMovingImageWithHoney.src = 'images/scene/rightMovingBearWithHoney.png';
+
             this.leftMovingImage = new Image();
             this.leftMovingImage.src = 'images/scene/leftMovingBear.png';
+
+            this.leftMovingImageWithHoney = new Image();
+            this.leftMovingImageWithHoney.src = 'images/scene/leftMovingBearWithHoney.png';
 
             this.rightMovingImage.addEventListener('load', () => {
                 this.frames = 0;
@@ -51,9 +64,19 @@
 
         get currentImage () {
             if (this.directionX === 1) {
-                return this.rightMovingImage;
+                if (this.state === STATES.WITHOUT_HONEY) {
+                    return this.rightMovingImage;
+                } else {
+                    return this.rightMovingImageWithHoney;
+                }
             } else {
-                return this.leftMovingImage;
+                if (this.state === STATES.WITHOUT_HONEY) {
+                    return this.leftMovingImage;
+
+                } else {
+                    return this.leftMovingImageWithHoney;
+
+                }
             }
         }
 
@@ -182,6 +205,7 @@
             this.setEndPosition(this.finishPosX, this.finishPosY);
             this.directionX *= -1;
             this.isChangeDirectionX = true;
+            this.state = STATES.WITH_HONEY;
         }
 
         meetBeeHandler () {
@@ -197,6 +221,7 @@
         }
 
         setToInitialState () {
+            this.state = STATES.WITHOUT_HONEY;
             this.setPosition(this.startPosX, this.startPosY);
             this.speedPerFrame = this.originalSpeedPerFrame;
             this.isChangeDirectionX = false;
