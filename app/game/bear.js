@@ -209,7 +209,9 @@
         }
 
         meetBeeHandler () {
-            this.speedPerFrame = 4;
+            if(this.speedPerFrame < 5) {
+                this.speedPerFrame += 0.5;
+            }
 
             if (!this.isChangeDirectionX && !this.isIntersectionBee) {
                 this.setEndPosition(this.finishPosX, this.finishPosY);
