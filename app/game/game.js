@@ -2,15 +2,9 @@
 
     'use strict';
 
-    const TIME_OVER_MS = 300500;
-
     class Game {
         constructor () {
-            this.timeOverTimerId = undefined;
-            this.timeOverHandlerBind = this.timeOverHandler.bind(this);
-
             this.messageElement = null;
-
             this.audioContext = null;
 
             // Create a buffer for the incoming sound content
@@ -23,7 +17,7 @@
             this.showGameOverMessageBind = this.showGameOverMessage.bind(this);
             this.destroyBind = this.destroy.bind(this);
 
-            this.playGround = undefined;
+            this.playGround = null;
         }
 
 
@@ -31,33 +25,20 @@
             this.playGround = new PlayGround();
             this.playGround.start();
 
-            this.scheduleTimeOver();
             this.initAudio();
 
             this.toggleAudioButton = document.querySelector('.toggle-audio-button');
-
             this.toggleAudioButton.addEventListener('click', this.toggleAudio);
+
             window.addEventListener('hashchange', this.destroyBind);
+
             EventObserver.addEventListener('gameOver', this.showGameOverMessageBind);
             EventObserver.addEventListener('winning', this.showGameWinMessageBind);
         }
 
         restart () {
             this.playGround.start();
-            this.scheduleTimeOver();
         }
-
-
-        scheduleTimeOver () {
-            this.timeOverTimerId = setTimeout(this.timeOverHandlerBind, TIME_OVER_MS);
-        }
-
-
-        timeOverHandler () {
-            this.stop();
-            this.showGameOverMessage();
-        }
-
 
         initAudio () {
             this.audioContext = new AudioContext();
@@ -163,14 +144,7 @@
             this.messageElement = messageElement;
         }
 
-
-        stop () {
-            clearTimeout(this.timeOverTimerId);
-        }
-
-
         destroy () {
-            this.stop();
             this.playGround.destroy();
             this.removeMessage();
 
